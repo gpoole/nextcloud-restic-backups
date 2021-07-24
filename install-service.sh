@@ -11,8 +11,11 @@ cp $1.service /etc/systemd/system
 cp $1.timer /etc/systemd/system
 
 if [ -r $1.env ]; then
+  echo "Copying $1.env to /etc/backups..."
   mkdir -p /etc/backups/
   cp $1.env /etc/backups/$.env
+else
+  echo "Config in /etc/backups/$1.env will not be overwritten."
 fi
 
 systemctl daemon-reload
