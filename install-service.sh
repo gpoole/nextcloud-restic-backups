@@ -1,23 +1,23 @@
 #!/usr/bin/bash
 
-SERVICE_NAME="$1"
+SERVICE_NAME="$SERVICE_NAME"
 
 if [ -z "$SERVICE_NAME" ]; then
   echo "Usage: install-service.sh service-name" > /dev/stderr
   exit 1
 fi
 
-cp $1.service /etc/systemd/system
-cp $1.timer /etc/systemd/system
+cp $SERVICE_NAME.service /etc/systemd/system
+cp $SERVICE_NAME.timer /etc/systemd/system
 
-if [ -r $1.env ]; then
-  echo "Copying $1.env to /etc/backups..."
+if [ -r $SERVICE_NAME.env ]; then
+  echo "Copying $SERVICE_NAME.env to /etc/backups..."
   mkdir -p /etc/backups/
-  cp $1.env /etc/backups/$.env
+  cp $SERVICE_NAME.env /etc/backups/$.env
 else
-  echo "Config in /etc/backups/$1.env will not be overwritten."
+  echo "Config in /etc/backups/$SERVICE_NAME.env will not be overwritten."
 fi
 
 systemctl daemon-reload
-systemctl enable $1.timer $1
-systemctl start $1.timer
+systemctl enable $SERVICE_NAME.timer $SERVICE_NAME
+systemctl start $SERVICE_NAME.timer
