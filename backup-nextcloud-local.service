@@ -1,0 +1,10 @@
+[Unit]
+Description=Runs a local backup of NextCloud
+Wants=backup-nextcloud-local.timer
+
+[Service]
+ExecStart=/usr/bin/backup-nextcloud-local.sh
+EnvironmentFile=/etc/backups/backup-nextcloud-local.env
+
+[Install]
+WantedBy=multi-user.target

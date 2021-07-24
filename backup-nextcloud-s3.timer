@@ -1,0 +1,9 @@
+[Unit]
+Description=Run NextCloud S3 backup command
+
+[Timer]
+Unit=backup-nextcloud-s3.service
+OnCalendar=Mon *-*-* 03:00:00 Australia/Sydney
+
+[Install]
+WantedBy=timers.target

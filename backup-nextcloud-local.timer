@@ -1,0 +1,9 @@
+[Unit]
+Description=Run NextCloud local backup command
+
+[Timer]
+Unit=backup-nextcloud-local.service
+OnCalendar=Sun *-*-* 03:00:00 Australia/Sydney
+
+[Install]
+WantedBy=timers.target

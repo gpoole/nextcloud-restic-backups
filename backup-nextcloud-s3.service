@@ -1,0 +1,10 @@
+[Unit]
+Description=Runs an S3 backup of nextcloud
+Wants=backup-nextcloud-s3.timer
+
+[Service]
+ExecStart=/usr/bin/backup-nextcloud-s3.sh
+EnvironmentFile=/etc/backups/backup-nextcloud-s3.env
+
+[Install]
+WantedBy=multi-user.target
